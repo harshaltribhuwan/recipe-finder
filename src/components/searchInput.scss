@@ -10,6 +10,14 @@
     overflow-x: hidden;
 }
 
+.no-result {
+    padding: 16px;
+    font-size: 15px;
+    color: #999;
+    text-align: center;
+    pointer-events: none;
+}
+
 .search-box {
     width: 100%;
     max-width: 500px;
@@ -85,11 +93,20 @@
     .search-box {
         padding: 20px;
         border-radius: 12px;
-        max-width: 90%; // 🌟 This will prevent it from touching screen edges
-        margin: 0 auto; // center it nicely
+        max-width: 90%;
+        margin: 0 auto;
     }
 
-    .search-input-container input {
-        width: 100%; // make input stretch to the container cleanly
+    .search-input-container {
+        padding: 0 4px; // ✅ add horizontal padding around input container
+
+        input {
+            width: 100%; // ✅ make input fill that container
+        }
+    }
+
+    .search-result-container {
+        left: 4px; // ✅ align results with input padding
+        width: calc(100% - 8px); // ✅ account for horizontal padding
     }
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./recipeDetails.scss"; // You can style this separately
+import { motion } from "framer-motion";
+import "./recipeDetails.scss";
 
 const RecipeDetails = () => {
   const [recipeData, setRecipeData] = useState(null);
@@ -22,15 +23,13 @@ const RecipeDetails = () => {
     fetchApi();
   }, []);
 
-if (!recipeData) {
-  return (
-    <div className="loading-screen">
-      <div className="spinner" />
-    </div>
-  );
-}
-
-
+  if (!recipeData) {
+    return (
+      <div className="loading-screen">
+        <div className="spinner" />
+      </div>
+    );
+  }
 
   const {
     name,
@@ -50,9 +49,14 @@ if (!recipeData) {
   } = recipeData;
 
   return (
-    <div className="recipe-container">
+    <motion.div
+      className="recipe-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <span className="back-btn" onClick={() => navigate(-1)}>
-        ←
+        ← Back
       </span>
 
       <div className="recipe-image">
@@ -76,8 +80,8 @@ if (!recipeData) {
 
       <div className="recipe-meta">
         <p>
-          ⭐ {rating} ({reviewCount} reviews) | 🍽 {servings} servings | ⏱️{" "}
-          {prepTimeMinutes} min prep • {cookTimeMinutes} min cook
+          Rating: {rating} ({reviewCount} reviews) | Servings: {servings} |
+          Prep: {prepTimeMinutes} min • Cook: {cookTimeMinutes} min
         </p>
         <p>
           <strong>Difficulty:</strong> {difficulty} | <strong>Cuisine:</strong>{" "}
@@ -92,25 +96,23 @@ if (!recipeData) {
       </div>
 
       <div className="section">
-        <h2>🧾 Ingredients</h2>
+        <h2>Ingredients</h2>
         <ul>
           {ingredients?.map((item, i) => (
-            <li key={i}>✔ {item}</li>
+            <li key={i}>{item}</li>
           ))}
         </ul>
       </div>
 
       <div className="section">
-        <h2>👨‍🍳 Instructions</h2>
+        <h2>Instructions</h2>
         <ol>
           {instructions?.map((step, i) => (
-            <li key={i}>
-              {i + 1}. {step}
-            </li>
+            <li key={i}>{step}</li>
           ))}
         </ol>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

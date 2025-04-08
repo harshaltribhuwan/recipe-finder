@@ -6,7 +6,7 @@ import RecipeDetails from './components/RecipeDetails';
 function App() {
 
   return (
-    <Router>
+    <Router basename="/recipe-finder">
       <div className="app">
         <Routes>
           <Route path="/" element={<SearchInput />} />
