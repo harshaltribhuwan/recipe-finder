@@ -22,7 +22,15 @@ const RecipeDetails = () => {
     fetchApi();
   }, []);
 
-  if (!recipeData) return <div className="loading">Loading...</div>;
+if (!recipeData) {
+  return (
+    <div className="loading-screen">
+      <div className="spinner" />
+    </div>
+  );
+}
+
+
 
   const {
     name,
@@ -43,9 +51,9 @@ const RecipeDetails = () => {
 
   return (
     <div className="recipe-container">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ← Back
-      </button>
+      <span className="back-btn" onClick={() => navigate(-1)}>
+        ←
+      </span>
 
       <div className="recipe-image">
         {isImageLoading && (
@@ -58,7 +66,6 @@ const RecipeDetails = () => {
           alt={name}
           onLoad={() => setIsImageLoading(false)}
           style={{
-            display: isImageLoading ? "none" : "block",
             opacity: isImageLoading ? 0 : 1,
             transition: "opacity 0.5s ease",
           }}

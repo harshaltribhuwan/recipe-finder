@@ -1,83 +1,88 @@
 .recipe-container {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2rem;
-    font-family: "Segoe UI", sans-serif;
+    padding: 2rem 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #333;
 
     .back-btn {
-        margin-bottom: 1rem;
-        padding: 0.5rem 1rem;
-        background: #eee;
-        border: none;
-        border-radius: 6px;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
         cursor: pointer;
-        transition: 0.2s ease;
+        background: none;
+        border: none;
+        color: #666;
+        transition: color 0.3s ease;
 
         &:hover {
-            background: #ccc;
+            color: #000;
         }
     }
 
-.recipe-image {
-    position: relative;
-    width: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-
-    .image-skeleton {
-        width: 100%;
-        padding-top: 56.25%; // 16:9 aspect ratio placeholder
-        background-color: #eee;
+    .recipe-image {
         position: relative;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        border-radius: 16px;
 
-        .spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #ccc;
-            border-top-color: #555;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            transform: translate(-50%, -50%);
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            display: block;
+            transition: opacity 0.5s ease;
         }
 
-        @keyframes spin {
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
+        .image-skeleton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 4px solid #ccc;
+                border-top-color: #555;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
             }
         }
     }
 
-    img {
-        width: 100%;
-        border-radius: 12px;
-        transition: opacity 0.3s ease-in-out;
-    }
-}
-
     .recipe-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
         margin-bottom: 1rem;
+        font-weight: 600;
     }
 
     .recipe-meta {
-        background-color: #f9f9f9;
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
+        background-color: #f3f3f3;
+        padding: 1rem 1.2rem;
+        border-radius: 12px;
         font-size: 0.95rem;
         line-height: 1.6;
+        margin-bottom: 2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     }
 
     .section {
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
 
         h2 {
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
         }
 
         ul,
@@ -85,7 +90,8 @@
             padding-left: 1.5rem;
 
             li {
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.6rem;
+                line-height: 1.5;
             }
         }
     }
@@ -94,5 +100,28 @@
         text-align: center;
         padding: 2rem;
         font-size: 1.5rem;
+    }
+
+    .loading-screen {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #fff;
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #ccc;
+            border-top-color: #333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
     }
 }
